@@ -4,9 +4,14 @@ import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import random
+from simulation import SIMULATION
 import time
 
 
+simulation = SIMULATION()
+simulation.Run()
+
+"""
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
@@ -42,3 +47,4 @@ for i in range(0, 1000):
 p.disconnect()
 np.save("/Users/brianbowman/Desktop/robotics/data/sensor_values.npy", backLegSensorValues)
 np.save("/Users/brianbowman/Desktop/robotics/data/frontLegSensorValues.npy", frontLegSensorValues)
+"""
