@@ -16,18 +16,25 @@ class SIMULATION:
         self.world = WORLD()
         self.robot = ROBOT()
         pyrosim.Prepare_To_Simulate(self.robot.robotId)
+        self.robot.Prepare_To_Sense()
+        self.robot.Prepare_To_Act()
+
+    def __del__(self):
+        p.disconnect()
 
     def Run(self):
         backLegSensorValues = np.zeros(1000)
         frontLegSensorValues = np.zeros(1000)
 
-        BackLeg_targetAngles = np.linspace(0, np.pi*2, 1000)
+        BackLeg_targetAngles = np.linspace(0, np.pi*2, 100)
         BackLeg_targetAngles = c.BackLeg_amplitude * np.sin(c.BackLeg_frequency * BackLeg_targetAngles + c.BackLeg_phaseOffset)
-        FrontLeg_targetAngles = np.linspace(0, np.pi*2, 1000)
+        FrontLeg_targetAngles = np.linspace(0, np.pi*2, 100)
         FrontLeg_targetAngles = c.FrontLeg_amplitude * np.sin(c.FrontLeg_frequency * FrontLeg_targetAngles + c.FrontLeg_phaseOffset)
 
-        for i in range(0, 1000):
+        for i in range(0, 100):
             p.stepSimulation()
+            self.robot.Sense(i)
+            self.robot.Act(i)
 
             #backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
             #frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
@@ -35,5 +42,3 @@ class SIMULATION:
             #pyrosim.Set_Motor_For_Joint(bodyIndex = 1, jointName = "Torso_FrontLeg", controlMode = p.POSITION_CONTROL, targetPosition = FrontLeg_targetAngles[i], maxForce = 50)
 
             time.sleep(c.SLEEP_TIME)
-
-        p.disconnect()
