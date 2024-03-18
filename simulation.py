@@ -26,12 +26,12 @@ class SIMULATION:
         backLegSensorValues = np.zeros(1000)
         frontLegSensorValues = np.zeros(1000)
 
-        BackLeg_targetAngles = np.linspace(0, np.pi*2, 100)
+        BackLeg_targetAngles = np.linspace(0, np.pi*2, 1000)
         BackLeg_targetAngles = c.BackLeg_amplitude * np.sin(c.BackLeg_frequency * BackLeg_targetAngles + c.BackLeg_phaseOffset)
-        FrontLeg_targetAngles = np.linspace(0, np.pi*2, 100)
+        FrontLeg_targetAngles = np.linspace(0, np.pi*2, 1000)
         FrontLeg_targetAngles = c.FrontLeg_amplitude * np.sin(c.FrontLeg_frequency * FrontLeg_targetAngles + c.FrontLeg_phaseOffset)
 
-        for i in range(0, 100):
+        for i in range(0, 1000):
             p.stepSimulation()
             self.robot.Sense(i)
             self.robot.Think()
