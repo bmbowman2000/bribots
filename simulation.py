@@ -31,7 +31,7 @@ class SIMULATION:
         FrontLeg_targetAngles = np.linspace(0, np.pi*2, 1000)
         FrontLeg_targetAngles = c.FrontLeg_amplitude * np.sin(c.FrontLeg_frequency * FrontLeg_targetAngles + c.FrontLeg_phaseOffset)
 
-        for i in range(0, 1000):
+        for i in range(0, 300):
             p.stepSimulation()
             self.robot.Sense(i)
             self.robot.Think()
