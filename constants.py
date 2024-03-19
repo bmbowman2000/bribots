@@ -8,3 +8,5 @@ BackLeg_phaseOffset = 0
 FrontLeg_amplitude = np.pi / 4
 FrontLeg_frequency = 50
 FrontLeg_phaseOffset = 0
+
+numberOfGenerations = 30

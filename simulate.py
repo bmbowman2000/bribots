@@ -5,11 +5,13 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import random
 from simulation import SIMULATION
+import sys
 import time
 
-
-simulation = SIMULATION()
+directOrGUI = sys.argv[1]
+simulation = SIMULATION(directOrGUI)
 simulation.Run()
+simulation.Get_Fitness()
 
 """
 physicsClient = p.connect(p.GUI)

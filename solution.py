@@ -1,6 +1,7 @@
 import pyrosim.pyrosim as pyrosim
 import numpy as np
 import os
+import random
 
 class SOLUTION:
     def __init__(self):
@@ -35,8 +36,17 @@ class SOLUTION:
         pyrosim.Send_Cube(name="Box", pos=[-5,5,0.5] , size=[1, 1, 1])
         pyrosim.End()
 
-    def Evaluate(self):
+    def Evaluate(self, directOrGUI):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("python3 simulate.py")
+        os.system("python3 simulate.py " + directOrGUI)
+
+        fitnessFile = open("fitness.txt")
+        self.fitness = float(fitnessFile.read())
+        fitnessFile.close()
+
+    def Mutate(self):
+        randomRow = random.randint(0, 2)
+        randomColumn = random.randint(0, 1)
+        self.weights[randomRow][randomColumn] = random.random() * 2 - 1
