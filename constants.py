@@ -9,5 +9,5 @@ FrontLeg_amplitude = np.pi / 4
 FrontLeg_frequency = 50
 FrontLeg_phaseOffset = 0
 
-numberOfGenerations = 30
-populationSize = 2
+numberOfGenerations = 10
+populationSize = 10
